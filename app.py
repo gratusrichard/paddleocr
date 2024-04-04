@@ -29,13 +29,17 @@ for subdir in os.listdir(master_folder):
         for img in images[:train_count]:
             src_path = os.path.join(subdir_path, img)
             dest_path = os.path.join(train_folder, img)
-            copyfile(src_path, dest_path)
+            # Check if source and destination paths are the same
+            if src_path != dest_path:
+                copyfile(src_path, dest_path)
         
         # Copy images to test folder
         for img in images[train_count:]:
             src_path = os.path.join(subdir_path, img)
             dest_path = os.path.join(test_folder, img)
-            copyfile(src_path, dest_path)
+            # Check if source and destination paths are the same
+            if src_path != dest_path:
+                copyfile(src_path, dest_path)
 
 # Create rec_gt_train.txt and rec_gt_test.txt files
 def create_label_file(folder, label_file):
